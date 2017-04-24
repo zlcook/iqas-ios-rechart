@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.rechart.entity.testtype.TestTypes;
 import com.rechart.service.testtypeservice.TestTypeService;
@@ -28,56 +29,57 @@ public class TestTypeController {
 
 	private TestTypeService testTypeService;			
 
+	/*public ModelAndView LearnTimeData(String userId){
+		ModelAndView view = new ModelAndView("rechart/LearnTimeChart");
+		view.addObject("userId", userId);
+		return view;
+	}*/
 	@RequestMapping(value = "TestTypeChart")
-	private String TestAspectData(){
-		return "rechart/TestTypeChart";
+	private ModelAndView TestAspectData(String userId){
+		ModelAndView view = new ModelAndView("rechart/TestTypeChart");
+		view.addObject("userId", userId);
+		return view;
 	}
 	
 	@RequestMapping(value="TestType")
 	private String getTestType(String userId, Model model) throws Exception{
 				
-		List<Double> testTypeCount = new ArrayList<Double>();	//定义list集合存储每一种考察方面的总记录		
+		List<Double> testTypeAnswerCount = new ArrayList<Double>();	//定义list集合存储每一种考察题型的回答记录		
 		
-		List<Double> testRefData = new ArrayList<Double>();	//定义list集合存储每一种考察方面的参考值
+		List<Double> testTypeRightCount = new ArrayList<Double>();	//定义list集合存储每一种考察题型的正确次数		
 		
-		List<Double> testRealData = new ArrayList<Double>();	//定义list集合存储每一种考察方面的实际值
-		
-		List<Double> testScoreDatas = new ArrayList<Double>();	//定义list集合存储每一种考察方面的正确率
-		
-		userId = "001";
+		List<Double> testScoreDatas = new ArrayList<Double>();	//定义list集合存储每一种考察题型的正确率
 		
 		if(userId != null){						
-			testTypeCount = testTypeService.findTestTypeCount(userId);	//获取每一种考察方面的总记录
+			testTypeAnswerCount = testTypeService.findAnswerCount(userId);	//获取每一种考察题型的回答次数
 			
-			testRefData = testTypeService.findRefData(userId);	//获取每一种考察方面的参考值
-			
-			testRealData = testTypeService.findRealData(userId);	//获取每一种考察方面的实际值
+			testTypeRightCount = testTypeService.findRightCount(userId);	//获取每一种考察考察题型的正确次数			
 			
 			/**
 			 * 计算正确率
 			 * */
-			//定义两个数组用来存储参考值和实际值
-			double[] refScore_double = new double[testRefData.size()];
-			double[] realScore_double = new double[testRealData.size()];
+			//定义两个数组用来存储回答次数和正确次数
+			double[] answerTimes_double = new double[testTypeAnswerCount.size()];
+			double[] rightTimes_double = new double[testTypeRightCount.size()];
 			
 			//计算实际值和参考值
-			for(int i = 0; i < testRefData.size(); ++i){
-				Number numRefData = (Number)testRefData.get(i);
-				refScore_double[i] = numRefData.doubleValue();
-				Number numRealData = (Number)testRealData.get(i);
-				realScore_double[i] = numRealData.doubleValue();
+			for(int i = 0; i < testTypeRightCount.size(); ++i){
+				Number numAnswerCount = (Number)testTypeAnswerCount.get(i);
+				answerTimes_double[i] = numAnswerCount.doubleValue();
+				Number numRightCount = (Number)testTypeRightCount.get(i);
+				rightTimes_double[i] = numRightCount.doubleValue();
 				
 				// 创建一个数值格式化对象  					  
 		        NumberFormat numberFormat = NumberFormat.getInstance();  					        
 		        // 设置精确到小数点后2位  					  
 		        numberFormat.setMaximumFractionDigits(2);  					  
-		        String result = numberFormat.format((realScore_double[i]/refScore_double[i])*100);  					  
+		        String result = numberFormat.format((rightTimes_double[i]/answerTimes_double[i])*100);  					  
 		        double testScores = Double.parseDouble(result);
 		        testScoreDatas.add(testScores);
 			}						
 		}
 		
-		TestTypes testTypes = new TestTypes(testTypeCount, testScoreDatas);
+		TestTypes testTypes = new TestTypes(testTypeAnswerCount, testScoreDatas);
 
 		//利用JSON进行封装数据
 		JSONArray jsonArray = new JSONArray();

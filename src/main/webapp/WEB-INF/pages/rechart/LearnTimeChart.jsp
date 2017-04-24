@@ -29,11 +29,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		//请求服务器并获取数据		
 		function fetchData() {
-			alert("dd");
 			$.ajax({
-				url:"rechart/LearnTime.html",
+				url:"rechart/LearnTime.html?userId="+'${userId}',
 				success:function(result){
-					alert(111);
 					datas = $.parseJSON(result);													
 					//获取到上周学习的总时长
 					lastWeekDatas = datas[0].lastWeekDatas;

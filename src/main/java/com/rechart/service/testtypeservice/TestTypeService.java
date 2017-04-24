@@ -9,17 +9,12 @@ import java.util.List;
 */
 public interface TestTypeService {
 	/**
-	 * 获取每一种考查题型的总积累
+	 * 获取每一种考查题型的回答次数
 	 * */
-	public List<Double> findTestTypeCount(String userId);
+	public List<Double> findAnswerCount(String userId);
 	
 	/**
-	 * 获取每一种考查题型的参考值
+	 * 获取每一种考查题型的正确次数
 	 * */
-	public List<Double> findRefData(String userId);
-	
-	/**
-	 * 获取每一种考查题型的实际值
-	 * */
-	public List<Double> findRealData(String userId);
+	public List<Double> findRightCount(String userId);	
 }

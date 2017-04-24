@@ -48,9 +48,9 @@ public class TestScoreDaoImpl extends DaoSupport<TestScore> implements TestScore
 	public List<Double> findLastWeekRealScore(final String userId) {
 		// TODO Auto-generated method stub
 		final String sql = "select sum(round(testdifficulty/totalTimes,2))realScore from t_usertest where totalTimes > 0 and userid = ? and DATE_FORMAT(startTime,'%Y%u')=yearweek( now(),1 )-1";
-		List listLastWeekRealScore = getHt().execute(new HibernateCallback() {
+		List<Double> listLastWeekRealScore = getHt().execute(new HibernateCallback<List<Double>>() {
 			@Override
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			public List<Double> doInHibernate(Session session) throws HibernateException, SQLException {
 				// TODO Auto-generated method stub
 				Connection con = session.connection();
 				PreparedStatement ps = con.prepareStatement(sql);  
@@ -76,9 +76,9 @@ public class TestScoreDaoImpl extends DaoSupport<TestScore> implements TestScore
 	public List<Double> findThisWeekRealScore(final String userId) {
 		// TODO Auto-generated method stub
 		final String sql = "select sum(round(testdifficulty/totalTimes,2))realScore from t_usertest where totalTimes > 0 and userid = ? and DATE_FORMAT(startTime,'%Y%u')=yearweek( now(),1 )";
-		List listThisWeekRealScore = getHt().execute(new HibernateCallback() {
+		List<Double> listThisWeekRealScore = getHt().execute(new HibernateCallback<List<Double>>() {
 			@Override
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			public List<Double> doInHibernate(Session session) throws HibernateException, SQLException {
 				// TODO Auto-generated method stub
 				Connection con = session.connection();
 				PreparedStatement ps = con.prepareStatement(sql);  

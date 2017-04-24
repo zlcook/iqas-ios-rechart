@@ -50,15 +50,15 @@ public class TestAspectDaoImpl extends DaoSupport<TestAspects> implements TestAs
 	public List<Double> findRealData(final String userId) {
 		// TODO Auto-generated method stub		
 		final String sql = "select sum(round(testdifficulty/totalTimes,2))realScore from t_usertest where totalTimes > 0 and userid = ? group by TestAspect";
-		List listRealData = getHt().execute(new HibernateCallback() {
+		List<Double> listRealData = getHt().execute(new HibernateCallback<List<Double>>() {
 			@Override
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			public List<Double> doInHibernate(Session session) throws HibernateException, SQLException {
 				// TODO Auto-generated method stub
 				Connection con = session.connection();
 				PreparedStatement ps = con.prepareStatement(sql);  
 				ps.setString(1, userId);
 				ResultSet rs = ps.executeQuery();
-				List all = new ArrayList();
+				List<Double> all = new ArrayList();
 				while(rs.next()){
 					double result = rs.getDouble("realScore");
 					all.add(result);

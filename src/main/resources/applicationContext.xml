@@ -62,7 +62,7 @@
 		p:dataSource-ref="dataSource">
 		<!-- Spring提供了一个packagesToScan属性，从而可以通过扫描方式加载带注解（@Entity）的实体类 -->
 		<!-- 将扫描并加载这些包路径（包括子包）的所有的带注解实体类 ，可接受多个包用逗号分隔即可-->
-        <property name="packagesToScan" value="com.cnu.iqas.bean,com.cnu.offline.bean,com.user.entity"/>
+        <property name="packagesToScan" value="com.rechart.entity"/>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>

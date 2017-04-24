@@ -31,17 +31,17 @@ public class LearnTimeDaoImpl extends DaoSupport<LearnTime> implements LearnTime
 	@Override
 	public double findLastWeekData(final String userId) {
 		// TODO Auto-generated method stub		 
-		final String sql = "select sum(round( TIMESTAMPDIFF(minute, logintime, exittime)))minuteCount from t_userlogininfo where userid = ? and DATE_FORMAT(logintime,'%Y%u')=yearweek( now(),1 )-1";
-		List listLastWeekData = getHt().execute(new HibernateCallback(){
+		final String sql = "select sum(round( TIMESTAMPDIFF(minute, login_time, logout_time)))minuteCount from user_login where user_id = ? and DATE_FORMAT(login_time,'%Y%u')=yearweek( now(),1 )-1";
+		List<Double> listLastWeekData = getHt().execute(new HibernateCallback<List<Double>>(){
 
 			@Override
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			public List<Double> doInHibernate(Session session) throws HibernateException, SQLException {
 				// TODO Auto-generated method stub
 				Connection con = session.connection();
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setString(1, userId);
 				ResultSet rs = ps.executeQuery();
-				List all = new ArrayList();
+				List<Double> all = new ArrayList();
 				while(rs.next()){
 					double result = rs.getDouble("minuteCount");
 					all.add(result);
@@ -55,7 +55,7 @@ public class LearnTimeDaoImpl extends DaoSupport<LearnTime> implements LearnTime
 			}
 			
 		});		
-		return (double) listLastWeekData.get(0);
+		return listLastWeekData.get(0);
 	}
 
 	/**
@@ -64,17 +64,17 @@ public class LearnTimeDaoImpl extends DaoSupport<LearnTime> implements LearnTime
 	@Override
 	public double findThisWeekData(final String userId) {
 		// TODO Auto-generated method stub
-		final String sql = "select sum(round( TIMESTAMPDIFF(minute, logintime, loginouttime)))minuteCount from t_userlogininformation where userid = ? and DATE_FORMAT(logintime,'%Y%u')=yearweek( now(),1 )";
-		List listThisWeekData = getHt().execute(new HibernateCallback(){
+		final String sql = "select sum(round( TIMESTAMPDIFF(minute, login_time, logout_time)))minuteCount from user_login where user_id = ? and DATE_FORMAT(login_time,'%Y%u')=yearweek( now(),1 )";
+		List<Double> listThisWeekData = getHt().execute(new HibernateCallback<List<Double>>(){
 
 			@Override
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			public List<Double> doInHibernate(Session session) throws HibernateException, SQLException {
 				// TODO Auto-generated method stub
 				Connection con = session.connection();
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setString(1, userId);
 				ResultSet rs = ps.executeQuery();
-				List all = new ArrayList();
+				List<Double> all = new ArrayList();
 				while(rs.next()){
 					double result = rs.getDouble("minuteCount");
 					all.add(result);
@@ -88,7 +88,7 @@ public class LearnTimeDaoImpl extends DaoSupport<LearnTime> implements LearnTime
 			}
 			
 		});		
-		return (double) listThisWeekData.get(0);
+		return listThisWeekData.get(0);
 	}	
 	
 }

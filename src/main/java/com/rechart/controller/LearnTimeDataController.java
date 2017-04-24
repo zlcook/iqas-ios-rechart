@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.rechart.entity.learntime.LearnTime;
 import com.rechart.service.learntimeservice.LearnTimeService;
@@ -25,13 +26,14 @@ public class LearnTimeDataController {
 	private LearnTimeService learnTimeService;
 
 	@RequestMapping(value="LearnTimeChart")
-	public String LearnTimeData(){
-		return "rechart/LearnTimeChart";
+	public ModelAndView LearnTimeData(String userId){
+		ModelAndView view = new ModelAndView("rechart/LearnTimeChart");
+		view.addObject("userId", userId);
+		return view;
 	}
 	
 	@RequestMapping(value="LearnTime")
 	public String getLearnTime(String userId,Model model) throws Exception{				
-		userId = "2151002001";
 		double lastWeekLearnTime = 0; 
 		double thisWeekLearnTime =  0;
 		lastWeekLearnTime = learnTimeService.findLastWeekData(userId);

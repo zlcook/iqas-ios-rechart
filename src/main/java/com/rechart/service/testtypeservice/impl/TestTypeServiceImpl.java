@@ -20,22 +20,17 @@ public class TestTypeServiceImpl implements TestTypeService {
 	private TestTypeDao testTypeDao;
 
 	@Override
-	public List<Double> findTestTypeCount(String userId) {
+	public List<Double> findAnswerCount(String userId) {
 		// TODO Auto-generated method stub
-		return testTypeDao.findTestTypeCount(userId);
+		return testTypeDao.findAnswerCount(userId);
 	}
 
 	@Override
-	public List<Double> findRefData(String userId) {
+	public List<Double> findRightCount(String userId) {
 		// TODO Auto-generated method stub
-		return testTypeDao.findRefData(userId);
+		return testTypeDao.findRightCount(userId);
 	}
-
-	@Override
-	public List<Double> findRealData(String userId) {
-		// TODO Auto-generated method stub
-		return testTypeDao.findRealData(userId);
-	}	
+	
 	
 	public TestTypeDao getTestTypeDao() {
 		return testTypeDao;

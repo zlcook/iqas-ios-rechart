@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<base href="<%=basePath%>"> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Word show</title>
 	<!-- 引入JQuery -->
-	<script type="text/javascript" src="../js/rechart/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="js/rechart/jquery-2.2.0.min.js"></script>
 	<!-- 引入Highcharts库 -->
-	<script type="text/javascript" src="../js/rechart/highcharts.js"></script>
+	<script type="text/javascript" src="js/rechart/highcharts.js"></script>
 	<!-- 引入图表导出功能 -->
-	<script type="text/javascript" src="../js/rechart/exporting.js"></script>
+	<script type="text/javascript" src="js/rechart/exporting.js"></script>
 </head>
 <body onload="fetchData()">
 	<!-- 为Highcharts准备一个具备大小（宽高）的Dom -->
@@ -29,7 +34,7 @@
 		//请求服务器并获取数据
 		function fetchData() {
 			$.ajax({
-				url:"TestType.html",
+				url:"rechart/TestType.html?userId="+'${userId}',
 				success:function(result){
 					//alert(result);
 					datas = $.parseJSON(result);													
