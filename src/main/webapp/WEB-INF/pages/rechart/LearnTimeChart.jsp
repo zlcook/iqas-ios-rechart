@@ -12,14 +12,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Word show</title>
 	<!-- 引入echarts库 -->
 	<script type="text/javascript" src="js/rechart/echarts-all.js"></script>
-	
+	<script type="text/javascript" src="js/rechart/echarts.js"></script>
+	<script type="text/javascript" src="js/rechart/default.js"></script>
 	<!-- 引入JQuery -->
 	<script type="text/javascript" src="js/rechart/jquery-2.2.0.min.js"></script>
+	<style type="text/css">
+	   #backImg{
+	   	background: url("<%=basePath%>/images/background.png");
+	   }
+	</style>
 </head>
 <body onload="fetchData()">
+	<div id="backImg" style="width:700px;height:500px;">
+     
 	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-	<div id="myEchartsDiv" style="height: 400px; border: 1px dotted black"></div>
-	
+	<div id="myEchartsDiv" style="height: 500px;width:500px; border: 1px dotted black"></div>
+	</div>
 	<!-- ECharts单文件引入 -->
 	<script type="text/javascript">				
 		//最近一周的学习日期
@@ -50,33 +58,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		    var option = {
 		    		title : {
-			            text: '学习时长（min）'
+			            text: '学习时长（min）',
+			            textStyle: {
+			                fontSize: 28,
+			                fontWeight: 'bolder',
+			                color: '#ffffff'          // 主标题文字颜色
+			            },
 			        },
 			        tooltip : {
 			            trigger: 'axis'
 			        },
 			        toolbox: {
 			            show : true,
-			            feature : {
-			                mark : {show: true},
-			                dataView : {show: true, readOnly: false},
-			                magicType : {show: true, type: ['line', 'bar']},
-			                restore : {show: true},
-			                saveAsImage : {show: true}
-			            }
-			        },
-			        calculable : true,
-			        xAxis : [
-			            {
+			            
+			        },			       
+			        grid :{ borderWidth :'0px' },
+			        calculable : false,
+			        xAxis :  {
 			                type : 'category',
-			                data : ['学习时长']
-			            }
-			        ],
-			        yAxis : [
-			            {
-			                type : 'value'
-			            }
-			        ],
+			                data : ['学习时长'],
+			                splitLine:{show:false},
+			                axisLine:{
+			                	lineStyle:{
+			                		color:'#ffffff',
+
+			                	}
+			                },
+			                axisLabel: {
+		                        textStyle: {
+		                            color: '#ffffff',
+		                            fontSize:'16'
+		                        },
+		                    },            
+			            },
+			             
+			        
+			        yAxis :  [
+			                  {
+			                      //  隐藏y轴
+			                      axisLine: {show: true},
+			                      // 去除y轴上的刻度线
+			                      axisTick: {
+			                          show: true
+			                      },                    
+			                      // 控制网格线是否显示
+			                      splitLine: {
+			                          show: false,			                                                         
+			                      },
+			                      axisLine:{
+					                	lineStyle:{
+					                		color:'#ffffff',
+					                	}
+					                },
+			                      //  改变y轴字体颜色和大小
+			                      axisLabel: {
+			                          textStyle: {
+			                              color: '#ffffff',
+			                              fontSize:'16'
+			                          },
+			                      },                    
+			                      type : 'value'
+			                  }
+			              ],
 			        series : [
 			            {
 			                name:'上周',
@@ -90,7 +133,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                data:[thisWeekDatas],
 
 			            }
+			            
 			        ]
+			        
 			    };
 		    // 为echarts对象加载数据
 		    myChart.setOption(option);

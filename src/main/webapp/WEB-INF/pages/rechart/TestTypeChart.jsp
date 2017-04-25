@@ -54,9 +54,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			$('#container').highcharts({
                 chart: {
+                	type:'pie',
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
-                    plotShadow: false
+                    plotShadow: true,
+                    plotBackgroundImage: 'images/background.png'
                 },
                 title: {
                     text: '闯关类型对比(题型方面)'
@@ -81,8 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         cursor: 'pointer',                       
                         dataLabels: {
                             enabled: true,
-                            color: '#000000',
-                            connectorColor: '#000000',
+                            color: '#ffffff',
+                            connectorColor: '#ffffff',
                             format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                         }
                     }
