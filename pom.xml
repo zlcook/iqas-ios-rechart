@@ -260,17 +260,5 @@
   <build>
     <finalName>iqas-ios-rechart</finalName>
   </build>
-  <!--配置项目生成的构件部署到Nexus私服上 -->
-  <distributionManagement>
-  	<repository>
-		<id>nexus-releases</id>
-		<name>Nexus ReleaseRepository</name>  	
-		<url>http://172.19.201.155:8081/repository/maven-releases/</url>
-  	</repository>
-  	<snapshotRepository>
-  		<id>nexus-snapshots</id>
-		<name>Nexus SnapshotsRepository</name>  	
-		<url>http://172.19.201.155:8081/repository/maven-snapshots/</url>
-  	</snapshotRepository>
-  </distributionManagement>
+ 
 </project>
