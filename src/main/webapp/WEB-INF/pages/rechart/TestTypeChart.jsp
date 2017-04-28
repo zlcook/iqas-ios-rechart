@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body onload="fetchData()">
 	<!-- 为Highcharts准备一个具备大小（宽高）的Dom -->
 	<br />
-	<div id="container" style="..."></div>
+	<div id="container" style="height: 510px;width:710px;"></div>
 	
 	<!-- Highcharts单文件引入 -->
 	<script type="text/javascript">
@@ -58,9 +58,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: true,
-                    plotBackgroundImage: 'images/background.png'
+                    spacingTop: 10,
+                    plotBackgroundImage: 'images/background.jpg',
+                    backgroundColor: "#000000"
                 },
                 title: {
+                	style:{color: '#ffffff',
+                		fontSize: '20px'},
                     text: '闯关类型对比(题型方面)'
                 },
                 
@@ -69,8 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            href: 'http://www.cnu.edu.cn/',
 		            
 		        	style: {                            // 样式设置
-		        		cursor: 'pointer',
-		        		
+		        		cursor: 'pointer',	        		
 		        		fontSize: '10px'
 		        	}
 		        },

@@ -11,5 +11,11 @@ import java.util.Map;
 */
 public interface LoginTimeService {
 
+	/**
+	 * 查询最近七天登录时长
+	 * @param userId
+	 * @return
+	 */
 	public LinkedHashMap<String, Integer> findLoginTime(String userId);
+	
 }

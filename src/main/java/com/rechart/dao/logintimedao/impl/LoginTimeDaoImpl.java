@@ -44,7 +44,6 @@ public class LoginTimeDaoImpl extends DaoSupport<LoginTime> implements LoginTime
 				ps.setString(1, userId);
 				ResultSet rs = ps.executeQuery();
 				ResultSetMetaData md = rs.getMetaData();//得到结果集列的属性  
-		        int columns = md.getColumnCount();//得到记录有多少列  
 		        int i;  
 				
 				LinkedHashMap<String, Integer> linkMap = new LinkedHashMap<>();
@@ -76,6 +75,5 @@ public class LoginTimeDaoImpl extends DaoSupport<LoginTime> implements LoginTime
 		});
 		return listLoginTime;
 		
-	}
-
+	}	
 }

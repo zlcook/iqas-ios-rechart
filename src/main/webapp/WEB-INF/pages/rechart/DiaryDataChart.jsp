@@ -17,15 +17,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="js/rechart/jquery-2.2.0.min.js"></script>
 	<style type="text/css">
 	   #backImg{
-	   	background: url("<%=basePath%>/images/background.png");
+	   	background: url("<%=basePath%>/images/background.jpg");
 	   }
 	</style>
 </head>
 <body onload="fetchData()">
-	<div id="backImg" style="width:700px;height:500px;">
+	<div id="backImg" style="width:900px;height:800px;">
      
 	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-	<div id="myEchartsDiv" style="height: 500px;width:500px; border: 1px dotted black"></div>
+	<div id="myEchartsDiv" style="height: 500px;width:600px; border: 1px dotted black"></div>
 	</div>
 	<!-- ECharts单文件引入 -->
 	<script type="text/javascript">				
@@ -59,9 +59,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		    var option = {
 		    	    title: {
-		    	        x: 'center',
+		    	        x: 225,	
+		    	        y:55,
 		    	        text: '学习日记',
-		    	        textStyle:{color: '#ffffff'},
+		    	        textStyle:{
+		    	        	fontSize: 28,
+			                fontWeight: 'bolder',
+		    	        	color: '#ffffff'
+		    	        	},
 		    	    },
 		    	    tooltip: {
 		    	        trigger: 'item'

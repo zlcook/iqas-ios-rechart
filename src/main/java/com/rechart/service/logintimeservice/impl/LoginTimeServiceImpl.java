@@ -33,5 +33,6 @@ public class LoginTimeServiceImpl implements LoginTimeService {
 	public void setLoginTimeDao(LoginTimeDao loginTimeDao) {
 		this.loginTimeDao = loginTimeDao;
 	}
+	
 
 }

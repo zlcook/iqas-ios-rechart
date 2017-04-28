@@ -17,12 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="js/rechart/jquery-2.2.0.min.js"></script>
 	<style type="text/css">
 	   #backImg{
-	   	background: url("<%=basePath%>/images/background.png");
+	   	background: url("<%=basePath%>/images/background.jpg");
 	   }
 	</style>
 </head>
 <body onload="fetchData()">
-	<div id="backImg" style="width:700px;height:500px;">
+	<div id="backImg" style="width:900px;height:700px;">
 		<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 		<div id="myEchartsDiv" style="height: 500px;width:500px; border: 1px dotted black"></div>
 	</div>
@@ -67,6 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            calculable : true,
 
 		            legend: {
+		            	x: 125,                 // 水平安放位置，默认为左对齐，可选为： /'center' ¦ 'left' ¦ 'right'// ¦ {number}（x坐标，单位px）
+						y: 35, 
 		            	textStyle:{color: '#ffffff'},
 		                data:['文本','图片','音频','视频']
 		            },
