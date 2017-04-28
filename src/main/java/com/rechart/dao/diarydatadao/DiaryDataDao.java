@@ -1,20 +1,34 @@
 package com.rechart.dao.diarydatadao;
 
-import java.util.Date;
 import java.util.List;
-
-import com.rechart.entity.diarydata.DiaryData;
-
-
 
 /**
  * @author 郭明丽 
- * @version 创建时间：2016年9月12日 上午9:58:00 
+ * @version 创建时间：2017年4月27日 上午9:19:31 
  * 类说明 
 */
 public interface DiaryDataDao {
+
+	/**
+	 * 查询单词数量
+	 * @param userId
+	 * @return
+	 */
+	public List<Integer> findWordCount(String userId);
 	
-	public DiaryData findDiaryData(String userId, Date date);
-
+	/**
+	 * 查询上传作品数量
+	 * @param userId
+	 * @return
+	 */
+	public List<Integer> findWorkCount(String userId);
+	
+	/**
+	 * 查询金币获取数量
+	 * @param userId
+	 * @return
+	 */
+	public List<Integer> findGoldCount(String userId);
+	
+	
 }
-
