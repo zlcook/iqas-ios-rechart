@@ -1,18 +1,32 @@
 package com.rechart.service.diarydataservice;
 
-import java.util.Date;
 import java.util.List;
-
-import com.rechart.entity.diarydata.DiaryData;
-
 
 /**
  * @author 郭明丽 
- * @version 创建时间：2016年9月12日 上午10:25:50 
+ * @version 创建时间：2017年4月27日 上午9:28:50 
  * 类说明 
 */
 public interface DiaryDataService {
-
-	public DiaryData findDiaryData(String userId,Date Date);
+	/**
+	 * 查询单词数量
+	 * @param userId
+	 * @return
+	 */
+	public List<Integer> findWordCount(String userId);
+	
+	/**
+	 * 查询上传作品数量
+	 * @param userId
+	 * @return
+	 */
+	public List<Integer> findWorkCount(String userId);
+	
+	/**
+	 * 查询金币获取数量
+	 * @param userId
+	 * @return
+	 */
+	public List<Integer> findGoldCount(String userId);
 	
 }
