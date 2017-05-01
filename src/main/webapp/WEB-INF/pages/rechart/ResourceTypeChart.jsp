@@ -22,9 +22,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
 </head>
 <body onload="fetchData()">
-	<div id="backImg" style="width:900px;height:700px;">
+	<div id="backImg">
 		<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-		<div id="myEchartsDiv" style="height: 500px;width:500px; border: 1px dotted black"></div>
+		<div id="myEchartsDiv" style="height: 500px; border: 1px dotted black"></div>
 	</div>
 	<!-- ECharts单文件引入 -->
 	<script type="text/javascript">				
