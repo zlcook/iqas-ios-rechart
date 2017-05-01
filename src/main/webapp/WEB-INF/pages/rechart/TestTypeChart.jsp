@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body onload="fetchData()">
 	<!-- 为Highcharts准备一个具备大小（宽高）的Dom -->
 	<br />
-	<div id="container" style="height: 510px;width:710px;"></div>
+	<div id="container" style="height: 700px;width:710px;"></div>
 	
 	<!-- Highcharts单文件引入 -->
 	<script type="text/javascript">
