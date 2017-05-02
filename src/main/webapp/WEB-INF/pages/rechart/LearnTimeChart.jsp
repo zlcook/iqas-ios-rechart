@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
 </head>
 <body onload="fetchData()"> 
-	<div id="backImg" style="width:900px;height:600px;">
+	<div id="backImg" style="height:700px;">
 		<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 		<div id="barMain" style="height:400px;width: 400px; float:left;"></div>
 		<div id="lineMain" style="height:400px;width:320px;float:left;"></div>
@@ -179,6 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        }
 		        myBarChart.on(ecConfig.EVENT.CLICK, eConsole);
 		        myBarChart.setOption(option,true); //当setOption第二个参数为true时，会阻止数据合并
+		        window.onresize = myBarChart.resize;
 		    }
 		}
 		
@@ -295,6 +296,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        };
 
 		        myLineChart.setOption(option2,true);
+		        window.onresize = myLineChart.resize;
 		    }
 		}
 		
